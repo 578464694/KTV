@@ -13,7 +13,11 @@ namespace KTV_stand_online_vsrsion
 {
     public partial class FormMain : Form
     {
-      
+        /// <summary>
+        /// Player见Play.cs
+        /// songsArrayList 存储歌曲路径
+        /// </summary>
+        Player player = new Player();
         ArrayList songsArrayList = new ArrayList();
         int playingSongIndex = 0;
         public FormMain()
@@ -38,22 +42,34 @@ namespace KTV_stand_online_vsrsion
             }
 
         }
-
+        /// <summary>
+        /// 上一首
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pboxPrevious_Click(object sender, EventArgs e)
         {
-            playSongSwitch(--playingSongIndex);
+            player.playSongSwitch(this, --playingSongIndex, ref songsArrayList, ref playingSongIndex);
         }
-
+        /// <summary>
+        /// 下一首
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pboxNext_Click(object sender, EventArgs e)
         {
-            playSongSwitch(++playingSongIndex);
+            player.playSongSwitch(this, ++playingSongIndex, ref songsArrayList, ref playingSongIndex);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
 
         }
-
+        /// <summary>
+        /// 添加歌曲
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pboxAddSongs_Click(object sender, EventArgs e)
         {
             OpenFileDialog openfile = new OpenFileDialog();
@@ -65,94 +81,52 @@ namespace KTV_stand_online_vsrsion
             }
             else
             {
-                addSongsPath(openfile.FileNames);
-
+                string[] files = openfile.FileNames;
+                player.addSongsPath(this, ref files, ref songsArrayList);
             }
         }
-
+        /// <summary>
+        /// 调节声音的UI效果
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panelParent_MouseClick(object sender, MouseEventArgs e)
         {
             this.panelChild.Size = new Size(e.X, 10);
             int valume = this.panelChild.Size.Width;
             setValume(valume);
         }
-
+        /// <summary>
+        /// 点击列表播放
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listViewSongs_Click(object sender, EventArgs e)
         {
             if (listViewSongs.SelectedItems.Count >= 1)
             {
                 playingSongIndex = this.listViewSongs.SelectedItems[0].Index;
                 string path = (string)(songsArrayList[playingSongIndex]);
-                play(path);
+                player.play(this,path);
             }
         }
-
+        /// <summary>
+        /// 自动播放
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timerAutoPlay_Tick(object sender, EventArgs e)
         {
-            if(this.mediaPlayer.playState == WMPLib.WMPPlayState.wmppsStopped)
-            playSongSwitch(++playingSongIndex);
+            if (this.mediaPlayer.playState == WMPLib.WMPPlayState.wmppsStopped)
+                player.playSongSwitch(this, ++playingSongIndex, ref songsArrayList, ref playingSongIndex);
         }
-
-        public void addSongsPath(string[] songs)
-        {
-
-            AxWMPLib.AxWindowsMediaPlayer getInfo = new AxWMPLib.AxWindowsMediaPlayer();
-            ((System.ComponentModel.ISupportInitialize)(getInfo)).BeginInit();
-            getInfo.Visible = false;
-            this.Controls.Add(getInfo);
-            ((System.ComponentModel.ISupportInitialize)(getInfo)).EndInit();
-            foreach (string value in songs)
-            {
-                getInfo.URL = value;
-                songsArrayList.Add(value);
-                ListViewItem item = new ListViewItem();
-                item.Text = Path.GetFileNameWithoutExtension(value);
-                getInfo.Ctlcontrols.stop();
-                listViewSongs.Items.Add(item);
-
-            }
-            this.Controls.Remove(getInfo);
-
-        }
-
-
-        public void playIcon()
-        {
-            if (this.mediaPlayer.currentPlaylist.count != 0)
-            {
-                this.pboxPlay.Image = global::KTV_stand_online_vsrsion.Properties.Resources.pause_down;
-                this.mediaPlayer.Ctlcontrols.play();
-            }
-        }
+        /// <summary>
+        /// 设置声音
+        /// </summary>
+        /// <param name="valume"></param>
         public void setValume(int valume)
         {
             this.mediaPlayer.settings.volume = valume;
-        }
-        public void playSongSwitch(int index)
-        {
-            if (index >= songsArrayList.Count)
-            {
-                play((string)songsArrayList[0]);
-                playingSongIndex = 0;
-            }
-            else if (index < 0)
-            {
-                index = songsArrayList.Count - 1;
-                play((string)songsArrayList[index]);
-            }
-            else
-            {
-                play((string)songsArrayList[index]);
-            }
-        }
-        public void play(string path)
-        {
-
-            this.mediaPlayer.URL = path;
-            playIcon();
-        }
-
-        
-        
+        }  
     }
 }

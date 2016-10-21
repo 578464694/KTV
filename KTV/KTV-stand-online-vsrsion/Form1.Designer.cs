@@ -40,6 +40,7 @@
             this.listViewSongs = new System.Windows.Forms.ListView();
             this.lvColumnSongname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timerAutoPlay = new System.Windows.Forms.Timer(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pboxPlay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPrevious)).BeginInit();
@@ -55,6 +56,7 @@
             this.pboxPlay.Size = new System.Drawing.Size(29, 29);
             this.pboxPlay.TabIndex = 1;
             this.pboxPlay.TabStop = false;
+            this.toolTip1.SetToolTip(this.pboxPlay, "播放/暂停");
             this.pboxPlay.Click += new System.EventHandler(this.pboxPlay_Click);
             // 
             // pboxNext
@@ -65,6 +67,7 @@
             this.pboxNext.Size = new System.Drawing.Size(29, 27);
             this.pboxNext.TabIndex = 3;
             this.pboxNext.TabStop = false;
+            this.toolTip1.SetToolTip(this.pboxNext, "下一首");
             this.pboxNext.Click += new System.EventHandler(this.pboxNext_Click);
             // 
             // pboxPrevious
@@ -75,6 +78,7 @@
             this.pboxPrevious.Size = new System.Drawing.Size(30, 26);
             this.pboxPrevious.TabIndex = 4;
             this.pboxPrevious.TabStop = false;
+            this.toolTip1.SetToolTip(this.pboxPrevious, "上一首");
             this.pboxPrevious.Click += new System.EventHandler(this.pboxPrevious_Click);
             // 
             // panelParent
@@ -83,6 +87,7 @@
             this.panelParent.Name = "panelParent";
             this.panelParent.Size = new System.Drawing.Size(100, 10);
             this.panelParent.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.panelParent, "音量");
             this.panelParent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelParent_MouseClick);
             // 
             // panelChild
@@ -92,6 +97,7 @@
             this.panelChild.Name = "panelChild";
             this.panelChild.Size = new System.Drawing.Size(30, 10);
             this.panelChild.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.panelChild, "音量");
             this.panelChild.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelParent_MouseClick);
             // 
             // pboxAddSongs
@@ -102,6 +108,7 @@
             this.pboxAddSongs.Size = new System.Drawing.Size(29, 28);
             this.pboxAddSongs.TabIndex = 7;
             this.pboxAddSongs.TabStop = false;
+            this.toolTip1.SetToolTip(this.pboxAddSongs, "添加歌曲");
             this.pboxAddSongs.Click += new System.EventHandler(this.pboxAddSongs_Click);
             // 
             // mediaPlayer
@@ -131,7 +138,7 @@
             // lvColumnSongname
             // 
             this.lvColumnSongname.Text = "歌名";
-            this.lvColumnSongname.Width = 285;
+            this.lvColumnSongname.Width = 600;
             // 
             // timerAutoPlay
             // 
@@ -172,9 +179,10 @@
         public System.Windows.Forms.PictureBox pboxPlay;
         private System.Windows.Forms.PictureBox pboxAddSongs;
         public AxWMPLib.AxWindowsMediaPlayer mediaPlayer;
-        private System.Windows.Forms.ListView listViewSongs;
+        public System.Windows.Forms.ListView listViewSongs;
         private System.Windows.Forms.ColumnHeader lvColumnSongname;
         private System.Windows.Forms.Timer timerAutoPlay;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
