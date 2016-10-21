@@ -16,3 +16,11 @@ G:\KTV\KTV\KTV-stand-online-vsrsion\obj\x86\Debug\AxInterop.WMPLib.dll
 G:\KTV\KTV\KTV-stand-online-vsrsion\obj\x86\Debug\KTV-stand-online-vsrsion.csproj.ResolveComReference.cache
 G:\KTV\KTV\KTV-stand-online-vsrsion\obj\x86\Debug\KTV-stand-online-vsrsion.exe
 G:\KTV\KTV\KTV-stand-online-vsrsion\obj\x86\Debug\KTV-stand-online-vsrsion.pdb
+G:\KTV\KTV\KTV-stand-online-vsrsion\bin\Debug\KTV-stand-online-vsrsion.exe
+G:\KTV\KTV\KTV-stand-online-vsrsion\bin\Debug\KTV-stand-online-vsrsion.pdb
+G:\KTV\KTV\KTV-stand-online-vsrsion\bin\Debug\Interop.WMPLib.dll
+G:\KTV\KTV\KTV-stand-online-vsrsion\bin\Debug\AxInterop.WMPLib.dll
+G:\KTV\KTV\KTV-stand-online-vsrsion\obj\x86\Debug\KTV-stand-online-vsrsion.csprojResolveAssemblyReference.cache
+G:\KTV\KTV\KTV-stand-online-vsrsion\obj\x86\Debug\KTV_stand_online_vsrsion.FormMain.resources
+G:\KTV\KTV\KTV-stand-online-vsrsion\obj\x86\Debug\KTV_stand_online_vsrsion.Properties.Resources.resources
+G:\KTV\KTV\KTV-stand-online-vsrsion\obj\x86\Debug\KTV-stand-online-vsrsion.csproj.GenerateResource.Cache
