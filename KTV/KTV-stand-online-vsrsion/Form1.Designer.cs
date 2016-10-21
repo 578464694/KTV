@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.pboxPlay = new System.Windows.Forms.PictureBox();
             this.pboxNext = new System.Windows.Forms.PictureBox();
@@ -35,8 +36,10 @@
             this.panelParent = new System.Windows.Forms.Panel();
             this.panelChild = new System.Windows.Forms.Panel();
             this.pboxAddSongs = new System.Windows.Forms.PictureBox();
-            this.lboxSongsList = new System.Windows.Forms.ListBox();
             this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.listViewSongs = new System.Windows.Forms.ListView();
+            this.lvColumnSongname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.timerAutoPlay = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pboxPlay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPrevious)).BeginInit();
@@ -80,6 +83,7 @@
             this.panelParent.Name = "panelParent";
             this.panelParent.Size = new System.Drawing.Size(100, 10);
             this.panelParent.TabIndex = 5;
+            this.panelParent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelParent_MouseClick);
             // 
             // panelChild
             // 
@@ -88,6 +92,7 @@
             this.panelChild.Name = "panelChild";
             this.panelChild.Size = new System.Drawing.Size(30, 10);
             this.panelChild.TabIndex = 6;
+            this.panelChild.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelParent_MouseClick);
             // 
             // pboxAddSongs
             // 
@@ -99,34 +104,47 @@
             this.pboxAddSongs.TabStop = false;
             this.pboxAddSongs.Click += new System.EventHandler(this.pboxAddSongs_Click);
             // 
-            // lboxSongsList
-            // 
-            this.lboxSongsList.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lboxSongsList.FormattingEnabled = true;
-            this.lboxSongsList.HorizontalScrollbar = true;
-            this.lboxSongsList.ItemHeight = 20;
-            this.lboxSongsList.Location = new System.Drawing.Point(12, 96);
-            this.lboxSongsList.Name = "lboxSongsList";
-            this.lboxSongsList.Size = new System.Drawing.Size(429, 124);
-            this.lboxSongsList.TabIndex = 8;
-            this.lboxSongsList.DoubleClick += new System.EventHandler(this.lboxSongsList_DoubleClick);
-            // 
             // mediaPlayer
             // 
             this.mediaPlayer.Enabled = true;
-            this.mediaPlayer.Location = new System.Drawing.Point(109, 306);
+            this.mediaPlayer.Location = new System.Drawing.Point(43, 340);
             this.mediaPlayer.Name = "mediaPlayer";
             this.mediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaPlayer.OcxState")));
             this.mediaPlayer.Size = new System.Drawing.Size(75, 23);
             this.mediaPlayer.TabIndex = 9;
+            this.mediaPlayer.Visible = false;
+            // 
+            // listViewSongs
+            // 
+            this.listViewSongs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvColumnSongname});
+            this.listViewSongs.FullRowSelect = true;
+            this.listViewSongs.GridLines = true;
+            this.listViewSongs.Location = new System.Drawing.Point(30, 86);
+            this.listViewSongs.Name = "listViewSongs";
+            this.listViewSongs.Size = new System.Drawing.Size(419, 230);
+            this.listViewSongs.TabIndex = 10;
+            this.listViewSongs.UseCompatibleStateImageBehavior = false;
+            this.listViewSongs.View = System.Windows.Forms.View.Details;
+            this.listViewSongs.Click += new System.EventHandler(this.listViewSongs_Click);
+            // 
+            // lvColumnSongname
+            // 
+            this.lvColumnSongname.Text = "歌名";
+            this.lvColumnSongname.Width = 285;
+            // 
+            // timerAutoPlay
+            // 
+            this.timerAutoPlay.Enabled = true;
+            this.timerAutoPlay.Tick += new System.EventHandler(this.timerAutoPlay_Tick);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 403);
+            this.Controls.Add(this.listViewSongs);
             this.Controls.Add(this.mediaPlayer);
-            this.Controls.Add(this.lboxSongsList);
             this.Controls.Add(this.pboxAddSongs);
             this.Controls.Add(this.panelChild);
             this.Controls.Add(this.panelParent);
@@ -151,10 +169,12 @@
         private System.Windows.Forms.Panel panelParent;
         private System.Windows.Forms.PictureBox pboxPrevious;
         private System.Windows.Forms.PictureBox pboxNext;
-        private System.Windows.Forms.PictureBox pboxPlay;
+        public System.Windows.Forms.PictureBox pboxPlay;
         private System.Windows.Forms.PictureBox pboxAddSongs;
-        private System.Windows.Forms.ListBox lboxSongsList;
-        private AxWMPLib.AxWindowsMediaPlayer mediaPlayer;
+        public AxWMPLib.AxWindowsMediaPlayer mediaPlayer;
+        private System.Windows.Forms.ListView listViewSongs;
+        private System.Windows.Forms.ColumnHeader lvColumnSongname;
+        private System.Windows.Forms.Timer timerAutoPlay;
     }
 }
 
