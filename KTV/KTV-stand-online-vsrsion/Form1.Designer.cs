@@ -114,10 +114,10 @@
             // mediaPlayer
             // 
             this.mediaPlayer.Enabled = true;
-            this.mediaPlayer.Location = new System.Drawing.Point(153, 196);
+            this.mediaPlayer.Location = new System.Drawing.Point(109, 306);
             this.mediaPlayer.Name = "mediaPlayer";
             this.mediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaPlayer.OcxState")));
-            this.mediaPlayer.Size = new System.Drawing.Size(339, 119);
+            this.mediaPlayer.Size = new System.Drawing.Size(75, 23);
             this.mediaPlayer.TabIndex = 9;
             // 
             // FormMain
