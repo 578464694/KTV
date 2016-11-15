@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections;
 using System.IO;
+using System.Text.RegularExpressions;
 namespace KTV_stand_online_vsrsion
 {
     /// <summary>
@@ -61,6 +62,7 @@ namespace KTV_stand_online_vsrsion
         /// <summary>
         /// 向ListView添加歌曲
         /// 向ArrayList添加歌曲路径
+        /// 
         /// </summary>
         /// <param name="main"></param>
         /// <param name="songs"></param>
@@ -79,10 +81,35 @@ namespace KTV_stand_online_vsrsion
                 ListViewItem item = new ListViewItem();
                 item.Text = Path.GetFileNameWithoutExtension(value);
                 getInfo.Ctlcontrols.stop();
-                main.listViewSongs.Items.Add(item);
+                main.lvwSongs.Items.Add(item);
 
             }
             main.Controls.Remove(getInfo);
+        }
+        /// <summary>
+        /// 向数据库添加歌曲
+        /// </summary>
+        /// <param name="main"></param>
+        /// <param name="songs"></param>
+        public void addSongsIntoDB(FormMain main,ref string[] songs)
+        {
+            DBoperateClass operate = new DBoperateClass();
+            Pinyin py = new Pinyin();
+            int rows = 0;
+            foreach(string value in songs)
+            {
+                string pattern = @".+(?=\.mp3)";  //匹配歌曲名称的正则
+                Regex reg = new Regex(pattern);
+                Match match = reg.Match(Path.GetFileName(value));
+                string filename = match.Value;      //获得文件名
+                string pyStr = py.GetChineseSpell(filename);    //获得拼音
+                string insertSQL = operate.getInsertSQL(filename, value, pyStr); //获得插入SQL
+                rows += operate.Insert(insertSQL); //插入数量 +1
+            }
+            if (rows > 0)
+            {
+                MessageBox.Show(string.Format("添加{0}首歌曲",rows));
+            }
         }
     }
 }

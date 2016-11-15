@@ -33,19 +33,21 @@
             this.pboxPlay = new System.Windows.Forms.PictureBox();
             this.pboxNext = new System.Windows.Forms.PictureBox();
             this.pboxPrevious = new System.Windows.Forms.PictureBox();
-            this.panelParent = new System.Windows.Forms.Panel();
-            this.panelChild = new System.Windows.Forms.Panel();
-            this.pboxAddSongs = new System.Windows.Forms.PictureBox();
+            this.pnlParent = new System.Windows.Forms.Panel();
+            this.pnlChild = new System.Windows.Forms.Panel();
+            this.pbxAddSongsIntoDB = new System.Windows.Forms.PictureBox();
             this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
-            this.listViewSongs = new System.Windows.Forms.ListView();
+            this.lvwSongs = new System.Windows.Forms.ListView();
             this.lvColumnSongname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timerAutoPlay = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pbxAddSong = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPlay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPrevious)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxAddSongs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAddSongsIntoDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAddSong)).BeginInit();
             this.SuspendLayout();
             // 
             // pboxPlay
@@ -81,35 +83,35 @@
             this.toolTip1.SetToolTip(this.pboxPrevious, "上一首");
             this.pboxPrevious.Click += new System.EventHandler(this.pboxPrevious_Click);
             // 
-            // panelParent
+            // pnlParent
             // 
-            this.panelParent.Location = new System.Drawing.Point(364, 53);
-            this.panelParent.Name = "panelParent";
-            this.panelParent.Size = new System.Drawing.Size(100, 10);
-            this.panelParent.TabIndex = 5;
-            this.toolTip1.SetToolTip(this.panelParent, "音量");
-            this.panelParent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelParent_MouseClick);
+            this.pnlParent.Location = new System.Drawing.Point(364, 53);
+            this.pnlParent.Name = "pnlParent";
+            this.pnlParent.Size = new System.Drawing.Size(100, 10);
+            this.pnlParent.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.pnlParent, "音量");
+            this.pnlParent.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelParent_MouseClick);
             // 
-            // panelChild
+            // pnlChild
             // 
-            this.panelChild.BackColor = System.Drawing.Color.White;
-            this.panelChild.Location = new System.Drawing.Point(364, 53);
-            this.panelChild.Name = "panelChild";
-            this.panelChild.Size = new System.Drawing.Size(30, 10);
-            this.panelChild.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.panelChild, "音量");
-            this.panelChild.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelParent_MouseClick);
+            this.pnlChild.BackColor = System.Drawing.Color.White;
+            this.pnlChild.Location = new System.Drawing.Point(364, 53);
+            this.pnlChild.Name = "pnlChild";
+            this.pnlChild.Size = new System.Drawing.Size(30, 10);
+            this.pnlChild.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.pnlChild, "音量");
+            this.pnlChild.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelParent_MouseClick);
             // 
-            // pboxAddSongs
+            // pbxAddSongsIntoDB
             // 
-            this.pboxAddSongs.Image = global::KTV_stand_online_vsrsion.Properties.Resources.list_down;
-            this.pboxAddSongs.Location = new System.Drawing.Point(307, 35);
-            this.pboxAddSongs.Name = "pboxAddSongs";
-            this.pboxAddSongs.Size = new System.Drawing.Size(29, 28);
-            this.pboxAddSongs.TabIndex = 7;
-            this.pboxAddSongs.TabStop = false;
-            this.toolTip1.SetToolTip(this.pboxAddSongs, "添加歌曲");
-            this.pboxAddSongs.Click += new System.EventHandler(this.pboxAddSongs_Click);
+            this.pbxAddSongsIntoDB.Image = global::KTV_stand_online_vsrsion.Properties.Resources.list_down;
+            this.pbxAddSongsIntoDB.Location = new System.Drawing.Point(307, 35);
+            this.pbxAddSongsIntoDB.Name = "pbxAddSongsIntoDB";
+            this.pbxAddSongsIntoDB.Size = new System.Drawing.Size(29, 28);
+            this.pbxAddSongsIntoDB.TabIndex = 7;
+            this.pbxAddSongsIntoDB.TabStop = false;
+            this.toolTip1.SetToolTip(this.pbxAddSongsIntoDB, "添加歌曲");
+            this.pbxAddSongsIntoDB.Click += new System.EventHandler(this.pboxAddSongs_Click);
             // 
             // mediaPlayer
             // 
@@ -121,19 +123,19 @@
             this.mediaPlayer.TabIndex = 9;
             this.mediaPlayer.Visible = false;
             // 
-            // listViewSongs
+            // lvwSongs
             // 
-            this.listViewSongs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwSongs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.lvColumnSongname});
-            this.listViewSongs.FullRowSelect = true;
-            this.listViewSongs.GridLines = true;
-            this.listViewSongs.Location = new System.Drawing.Point(30, 86);
-            this.listViewSongs.Name = "listViewSongs";
-            this.listViewSongs.Size = new System.Drawing.Size(419, 230);
-            this.listViewSongs.TabIndex = 10;
-            this.listViewSongs.UseCompatibleStateImageBehavior = false;
-            this.listViewSongs.View = System.Windows.Forms.View.Details;
-            this.listViewSongs.Click += new System.EventHandler(this.listViewSongs_Click);
+            this.lvwSongs.FullRowSelect = true;
+            this.lvwSongs.GridLines = true;
+            this.lvwSongs.Location = new System.Drawing.Point(30, 86);
+            this.lvwSongs.Name = "lvwSongs";
+            this.lvwSongs.Size = new System.Drawing.Size(419, 230);
+            this.lvwSongs.TabIndex = 10;
+            this.lvwSongs.UseCompatibleStateImageBehavior = false;
+            this.lvwSongs.View = System.Windows.Forms.View.Details;
+            this.lvwSongs.Click += new System.EventHandler(this.listViewSongs_Click);
             // 
             // lvColumnSongname
             // 
@@ -145,16 +147,27 @@
             this.timerAutoPlay.Enabled = true;
             this.timerAutoPlay.Tick += new System.EventHandler(this.timerAutoPlay_Tick);
             // 
+            // pbxAddSong
+            // 
+            this.pbxAddSong.Image = global::KTV_stand_online_vsrsion.Properties.Resources.list_down;
+            this.pbxAddSong.Location = new System.Drawing.Point(498, 39);
+            this.pbxAddSong.Name = "pbxAddSong";
+            this.pbxAddSong.Size = new System.Drawing.Size(27, 28);
+            this.pbxAddSong.TabIndex = 11;
+            this.pbxAddSong.TabStop = false;
+            this.pbxAddSong.Click += new System.EventHandler(this.pbxAddSong_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 403);
-            this.Controls.Add(this.listViewSongs);
+            this.Controls.Add(this.pbxAddSong);
+            this.Controls.Add(this.lvwSongs);
             this.Controls.Add(this.mediaPlayer);
-            this.Controls.Add(this.pboxAddSongs);
-            this.Controls.Add(this.panelChild);
-            this.Controls.Add(this.panelParent);
+            this.Controls.Add(this.pbxAddSongsIntoDB);
+            this.Controls.Add(this.pnlChild);
+            this.Controls.Add(this.pnlParent);
             this.Controls.Add(this.pboxPrevious);
             this.Controls.Add(this.pboxNext);
             this.Controls.Add(this.pboxPlay);
@@ -164,25 +177,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.pboxPlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPrevious)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxAddSongs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAddSongsIntoDB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAddSong)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelChild;
-        private System.Windows.Forms.Panel panelParent;
+        private System.Windows.Forms.Panel pnlChild;
+        private System.Windows.Forms.Panel pnlParent;
         private System.Windows.Forms.PictureBox pboxPrevious;
         private System.Windows.Forms.PictureBox pboxNext;
         public System.Windows.Forms.PictureBox pboxPlay;
-        private System.Windows.Forms.PictureBox pboxAddSongs;
+        private System.Windows.Forms.PictureBox pbxAddSongsIntoDB;
         public AxWMPLib.AxWindowsMediaPlayer mediaPlayer;
-        public System.Windows.Forms.ListView listViewSongs;
+        public System.Windows.Forms.ListView lvwSongs;
         private System.Windows.Forms.ColumnHeader lvColumnSongname;
         private System.Windows.Forms.Timer timerAutoPlay;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.PictureBox pbxAddSong;
     }
 }
 
