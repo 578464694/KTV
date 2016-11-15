@@ -18,8 +18,8 @@ namespace KTV_stand_online_vsrsion
         /// songsArrayList 存储歌曲路径
         /// </summary>
         Player player = new Player();
-        ArrayList songsArrayList = new ArrayList();
-        int playingSongIndex = 0;
+        ArrayList gSongsArrayList = new ArrayList();
+        int gPlayingSongIndex = 0;
         public FormMain()
         {
             InitializeComponent();
@@ -49,7 +49,7 @@ namespace KTV_stand_online_vsrsion
         /// <param name="e"></param>
         private void pboxPrevious_Click(object sender, EventArgs e)
         {
-            player.playSongSwitch(this, --playingSongIndex, ref songsArrayList, ref playingSongIndex);
+            player.playSongSwitch(this, --gPlayingSongIndex, ref gSongsArrayList, ref gPlayingSongIndex);
         }
         /// <summary>
         /// 下一首
@@ -58,7 +58,7 @@ namespace KTV_stand_online_vsrsion
         /// <param name="e"></param>
         private void pboxNext_Click(object sender, EventArgs e)
         {
-            player.playSongSwitch(this, ++playingSongIndex, ref songsArrayList, ref playingSongIndex);
+            player.playSongSwitch(this, ++gPlayingSongIndex, ref gSongsArrayList, ref gPlayingSongIndex);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -82,7 +82,8 @@ namespace KTV_stand_online_vsrsion
             else
             {
                 string[] files = openfile.FileNames;
-                player.addSongsPath(this, ref files, ref songsArrayList);
+              //  player.addSongsPath(this, ref files, ref songsArrayList);
+                player.addSongsIntoDB(this, ref files);
             }
         }
         /// <summary>
@@ -92,8 +93,8 @@ namespace KTV_stand_online_vsrsion
         /// <param name="e"></param>
         private void panelParent_MouseClick(object sender, MouseEventArgs e)
         {
-            this.panelChild.Size = new Size(e.X, 10);
-            int valume = this.panelChild.Size.Width;
+            this.pnlChild.Size = new Size(e.X, 10);
+            int valume = this.pnlChild.Size.Width;
             setValume(valume);
         }
         /// <summary>
@@ -103,10 +104,10 @@ namespace KTV_stand_online_vsrsion
         /// <param name="e"></param>
         private void listViewSongs_Click(object sender, EventArgs e)
         {
-            if (listViewSongs.SelectedItems.Count >= 1)
+            if (lvwSongs.SelectedItems.Count >= 1)
             {
-                playingSongIndex = this.listViewSongs.SelectedItems[0].Index;
-                string path = (string)(songsArrayList[playingSongIndex]);
+                gPlayingSongIndex = this.lvwSongs.SelectedItems[0].Index;
+                string path = (string)(gSongsArrayList[gPlayingSongIndex]);
                 player.play(this,path);
             }
         }
@@ -118,7 +119,7 @@ namespace KTV_stand_online_vsrsion
         private void timerAutoPlay_Tick(object sender, EventArgs e)
         {
             if (this.mediaPlayer.playState == WMPLib.WMPPlayState.wmppsStopped)
-                player.playSongSwitch(this, ++playingSongIndex, ref songsArrayList, ref playingSongIndex);
+                player.playSongSwitch(this, ++gPlayingSongIndex, ref gSongsArrayList, ref gPlayingSongIndex);
         }
         /// <summary>
         /// 设置声音
@@ -127,6 +128,11 @@ namespace KTV_stand_online_vsrsion
         public void setValume(int valume)
         {
             this.mediaPlayer.settings.volume = valume;
+        }
+
+        private void pbxAddSong_Click(object sender, EventArgs e)
+        {
+
         }  
     }
 }
