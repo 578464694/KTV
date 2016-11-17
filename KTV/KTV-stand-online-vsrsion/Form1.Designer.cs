@@ -100,6 +100,7 @@
             // 
             // timerAutoPlay
             // 
+            this.timerAutoPlay.Enabled = true;
             this.timerAutoPlay.Tick += new System.EventHandler(this.timerAutoPlay_Tick);
             // 
             // pbxAddSongsIntoDB
