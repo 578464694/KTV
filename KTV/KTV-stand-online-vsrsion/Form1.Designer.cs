@@ -30,58 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.pboxPlay = new System.Windows.Forms.PictureBox();
-            this.pboxNext = new System.Windows.Forms.PictureBox();
-            this.pboxPrevious = new System.Windows.Forms.PictureBox();
             this.pnlParent = new System.Windows.Forms.Panel();
             this.pnlChild = new System.Windows.Forms.Panel();
-            this.pbxAddSongsIntoDB = new System.Windows.Forms.PictureBox();
             this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.lvwSongs = new System.Windows.Forms.ListView();
             this.lvColumnSongname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timerAutoPlay = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pbxAddSongsIntoDB = new System.Windows.Forms.PictureBox();
+            this.pboxPrevious = new System.Windows.Forms.PictureBox();
+            this.pboxNext = new System.Windows.Forms.PictureBox();
+            this.pboxPlay = new System.Windows.Forms.PictureBox();
             this.pbxAddSong = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxPlay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxNext)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxPrevious)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxAddSongsIntoDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAddSongsIntoDB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxPrevious)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxNext)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxPlay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAddSong)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pboxPlay
-            // 
-            this.pboxPlay.Image = global::KTV_stand_online_vsrsion.Properties.Resources.play_down;
-            this.pboxPlay.Location = new System.Drawing.Point(156, 36);
-            this.pboxPlay.Name = "pboxPlay";
-            this.pboxPlay.Size = new System.Drawing.Size(29, 29);
-            this.pboxPlay.TabIndex = 1;
-            this.pboxPlay.TabStop = false;
-            this.toolTip1.SetToolTip(this.pboxPlay, "播放/暂停");
-            this.pboxPlay.Click += new System.EventHandler(this.pboxPlay_Click);
-            // 
-            // pboxNext
-            // 
-            this.pboxNext.Image = global::KTV_stand_online_vsrsion.Properties.Resources.next_down;
-            this.pboxNext.Location = new System.Drawing.Point(234, 36);
-            this.pboxNext.Name = "pboxNext";
-            this.pboxNext.Size = new System.Drawing.Size(29, 27);
-            this.pboxNext.TabIndex = 3;
-            this.pboxNext.TabStop = false;
-            this.toolTip1.SetToolTip(this.pboxNext, "下一首");
-            this.pboxNext.Click += new System.EventHandler(this.pboxNext_Click);
-            // 
-            // pboxPrevious
-            // 
-            this.pboxPrevious.Image = global::KTV_stand_online_vsrsion.Properties.Resources.preview_down;
-            this.pboxPrevious.Location = new System.Drawing.Point(77, 39);
-            this.pboxPrevious.Name = "pboxPrevious";
-            this.pboxPrevious.Size = new System.Drawing.Size(30, 26);
-            this.pboxPrevious.TabIndex = 4;
-            this.pboxPrevious.TabStop = false;
-            this.toolTip1.SetToolTip(this.pboxPrevious, "上一首");
-            this.pboxPrevious.Click += new System.EventHandler(this.pboxPrevious_Click);
             // 
             // pnlParent
             // 
@@ -101,17 +68,6 @@
             this.pnlChild.TabIndex = 6;
             this.toolTip1.SetToolTip(this.pnlChild, "音量");
             this.pnlChild.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelParent_MouseClick);
-            // 
-            // pbxAddSongsIntoDB
-            // 
-            this.pbxAddSongsIntoDB.Image = global::KTV_stand_online_vsrsion.Properties.Resources.list_down;
-            this.pbxAddSongsIntoDB.Location = new System.Drawing.Point(307, 35);
-            this.pbxAddSongsIntoDB.Name = "pbxAddSongsIntoDB";
-            this.pbxAddSongsIntoDB.Size = new System.Drawing.Size(29, 28);
-            this.pbxAddSongsIntoDB.TabIndex = 7;
-            this.pbxAddSongsIntoDB.TabStop = false;
-            this.toolTip1.SetToolTip(this.pbxAddSongsIntoDB, "添加歌曲");
-            this.pbxAddSongsIntoDB.Click += new System.EventHandler(this.pboxAddSongs_Click);
             // 
             // mediaPlayer
             // 
@@ -147,14 +103,59 @@
             this.timerAutoPlay.Enabled = true;
             this.timerAutoPlay.Tick += new System.EventHandler(this.timerAutoPlay_Tick);
             // 
+            // pbxAddSongsIntoDB
+            // 
+            this.pbxAddSongsIntoDB.Image = global::KTV_stand_online_vsrsion.Properties.Resources.list_down;
+            this.pbxAddSongsIntoDB.Location = new System.Drawing.Point(509, 363);
+            this.pbxAddSongsIntoDB.Name = "pbxAddSongsIntoDB";
+            this.pbxAddSongsIntoDB.Size = new System.Drawing.Size(29, 28);
+            this.pbxAddSongsIntoDB.TabIndex = 7;
+            this.pbxAddSongsIntoDB.TabStop = false;
+            this.toolTip1.SetToolTip(this.pbxAddSongsIntoDB, "管理员添加歌曲");
+            this.pbxAddSongsIntoDB.Click += new System.EventHandler(this.pboxAddSongs_Click);
+            // 
+            // pboxPrevious
+            // 
+            this.pboxPrevious.Image = global::KTV_stand_online_vsrsion.Properties.Resources.preview_down;
+            this.pboxPrevious.Location = new System.Drawing.Point(77, 39);
+            this.pboxPrevious.Name = "pboxPrevious";
+            this.pboxPrevious.Size = new System.Drawing.Size(30, 26);
+            this.pboxPrevious.TabIndex = 4;
+            this.pboxPrevious.TabStop = false;
+            this.toolTip1.SetToolTip(this.pboxPrevious, "上一首");
+            this.pboxPrevious.Click += new System.EventHandler(this.pboxPrevious_Click);
+            // 
+            // pboxNext
+            // 
+            this.pboxNext.Image = global::KTV_stand_online_vsrsion.Properties.Resources.next_down;
+            this.pboxNext.Location = new System.Drawing.Point(234, 36);
+            this.pboxNext.Name = "pboxNext";
+            this.pboxNext.Size = new System.Drawing.Size(29, 27);
+            this.pboxNext.TabIndex = 3;
+            this.pboxNext.TabStop = false;
+            this.toolTip1.SetToolTip(this.pboxNext, "下一首");
+            this.pboxNext.Click += new System.EventHandler(this.pboxNext_Click);
+            // 
+            // pboxPlay
+            // 
+            this.pboxPlay.Image = global::KTV_stand_online_vsrsion.Properties.Resources.play_down;
+            this.pboxPlay.Location = new System.Drawing.Point(156, 36);
+            this.pboxPlay.Name = "pboxPlay";
+            this.pboxPlay.Size = new System.Drawing.Size(29, 29);
+            this.pboxPlay.TabIndex = 1;
+            this.pboxPlay.TabStop = false;
+            this.toolTip1.SetToolTip(this.pboxPlay, "播放/暂停");
+            this.pboxPlay.Click += new System.EventHandler(this.pboxPlay_Click);
+            // 
             // pbxAddSong
             // 
             this.pbxAddSong.Image = global::KTV_stand_online_vsrsion.Properties.Resources.list_down;
-            this.pbxAddSong.Location = new System.Drawing.Point(498, 39);
+            this.pbxAddSong.Location = new System.Drawing.Point(301, 35);
             this.pbxAddSong.Name = "pbxAddSong";
             this.pbxAddSong.Size = new System.Drawing.Size(27, 28);
             this.pbxAddSong.TabIndex = 11;
             this.pbxAddSong.TabStop = false;
+            this.toolTip1.SetToolTip(this.pbxAddSong, "用户添加歌曲");
             this.pbxAddSong.Click += new System.EventHandler(this.pbxAddSong_Click);
             // 
             // FormMain
@@ -174,11 +175,11 @@
             this.Name = "FormMain";
             this.Text = "FormMain";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pboxPlay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxNext)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxPrevious)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxAddSongsIntoDB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAddSongsIntoDB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxPrevious)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxNext)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxPlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAddSong)).EndInit();
             this.ResumeLayout(false);
 

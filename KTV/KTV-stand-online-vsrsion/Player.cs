@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Data;
 namespace KTV_stand_online_vsrsion
 {
     /// <summary>
@@ -22,6 +23,22 @@ namespace KTV_stand_online_vsrsion
         {
             main.mediaPlayer.URL = path;
             this.playIcon(main);
+
+        }
+        /// <summary>
+        /// 播放改变热度
+        /// </summary>
+        /// <param name="main"></param>
+        /// <param name="path"></param>
+        public void play(FormMain main, string path,int id)
+        {
+            main.mediaPlayer.URL = path;
+            this.playIcon(main);
+            string sql = string.Format("select hot from T_song where id = {0}",id);
+            DBoperateClass operate = new DBoperateClass();
+            DataSet dataset = operate.getDataset(sql);
+            System.Data.DataRow row = dataset.Tables[0].Rows[0];
+            int hot = int.Parse( row[0].ToString());
         }
         /// <summary>
         /// 改变play按键的图标

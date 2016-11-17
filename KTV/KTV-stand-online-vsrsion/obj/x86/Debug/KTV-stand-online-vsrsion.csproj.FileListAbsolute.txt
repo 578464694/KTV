@@ -27,3 +27,4 @@ G:\KTV\KTV\KTV-stand-online-vsrsion\obj\x86\Debug\KTV-stand-online-vsrsion.cspro
 G:\KTV\KTV\KTV-stand-online-vsrsion\bin\Debug\SongDB.mdf
 G:\KTV\KTV\KTV-stand-online-vsrsion\bin\Debug\SongDB_log.ldf
 G:\KTV\KTV\KTV-stand-online-vsrsion\bin\Debug\KTV-stand-online-vsrsion.exe.config
+G:\KTV\KTV\KTV-stand-online-vsrsion\obj\x86\Debug\KTV_stand_online_vsrsion.FormAdd.resources

@@ -66,7 +66,7 @@ namespace KTV_stand_online_vsrsion
 
         }
         /// <summary>
-        /// 添加歌曲
+        /// 管理员添加歌曲
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -129,10 +129,40 @@ namespace KTV_stand_online_vsrsion
         {
             this.mediaPlayer.settings.volume = valume;
         }
-
+        /// <summary>
+        /// 添加歌曲
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void pbxAddSong_Click(object sender, EventArgs e)
         {
-
-        }  
+            FormAdd formAdd = new FormAdd();
+            if (formAdd.ShowDialog() == DialogResult.Cancel)
+            {
+                return;
+            }
+            else
+            {
+                addSongAtList();
+            }
+        }
+        /// <summary>
+        /// 播放列表和歌曲路径数组添加歌曲
+        /// </summary>
+        public void addSongAtList()
+        {
+            FormAdd formadd = new FormAdd();
+            //(ArrayList)formadd.gArrPlayList;
+            foreach(ListViewItem al in FormAdd.gArrPlayList)
+            {
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = al.Text;
+                lvi.Tag = al.Tag;
+                lvi.SubItems.Add(al.SubItems[1].Text);  //1 保存id
+                this.lvwSongs.Items.Add(lvi);
+                gSongsArrayList.Add(lvi.Tag);
+            }
+            
+        }
     }
 }

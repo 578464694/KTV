@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Windows.Forms;
+using System.Data;
 
 namespace KTV_stand_online_vsrsion
 {
@@ -69,6 +70,32 @@ namespace KTV_stand_online_vsrsion
                 MessageBox.Show("插入失败");
             }
             return rows;
+        }
+        /// <summary>
+        /// 绑定 dataSet 全选
+        /// </summary>
+        /// <returns></returns>
+        public DataSet bingDataSet()
+        {
+            DataSet myds = new DataSet();
+            string selectsql = "select * from T_song";
+            SqlDataAdapter adapter = new SqlDataAdapter(selectsql, this.dbcon());
+            adapter.Fill(myds);
+            this.dbcon().Close();
+            return myds;
+        }
+        /// <summary>
+        /// 通过 sql 获得dataset
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public DataSet getDataset(string sql)
+        {
+            DataSet myds = new DataSet();
+            SqlDataAdapter adapter = new SqlDataAdapter(sql, this.dbcon());
+            adapter.Fill(myds);
+            this.dbcon().Close();
+            return myds;
         }
     }
 }
