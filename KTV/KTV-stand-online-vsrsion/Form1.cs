@@ -19,6 +19,7 @@ namespace KTV_stand_online_vsrsion
         /// </summary>
         Player player = new Player();
         ArrayList gSongsArrayList = new ArrayList();
+        ArrayList gSongClassArrayList = new ArrayList();
         int gPlayingSongIndex = 0;
         public FormMain()
         {
@@ -43,22 +44,22 @@ namespace KTV_stand_online_vsrsion
 
         }
         /// <summary>
-        /// 上一首
+        /// 上一首 改成面向对象
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void pboxPrevious_Click(object sender, EventArgs e)
         {
-            player.playSongSwitch(this, --gPlayingSongIndex, ref gSongsArrayList, ref gPlayingSongIndex);
+            player.playSongSwitch(this, --gPlayingSongIndex, ref gSongClassArrayList, ref gPlayingSongIndex);
         }
         /// <summary>
-        /// 下一首
+        /// 下一首 改成面向对象
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void pboxNext_Click(object sender, EventArgs e)
         {
-            player.playSongSwitch(this, ++gPlayingSongIndex, ref gSongsArrayList, ref gPlayingSongIndex);
+            player.playSongSwitch(this, ++gPlayingSongIndex, ref gSongClassArrayList, ref gPlayingSongIndex);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -107,19 +108,20 @@ namespace KTV_stand_online_vsrsion
             if (lvwSongs.SelectedItems.Count >= 1)
             {
                 gPlayingSongIndex = this.lvwSongs.SelectedItems[0].Index;
-                string path = (string)(gSongsArrayList[gPlayingSongIndex]);
-                player.play(this,path);
+               // string path = (string)(gSongsArrayList[gPlayingSongIndex]);
+                Song song = (Song)gSongClassArrayList[gPlayingSongIndex];
+                player.play(this,song.getPath(),song.getId());
             }
         }
         /// <summary>
-        /// 自动播放
+        /// 自动播放 改成面向对象
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void timerAutoPlay_Tick(object sender, EventArgs e)
         {
             if (this.mediaPlayer.playState == WMPLib.WMPPlayState.wmppsStopped)
-                player.playSongSwitch(this, ++gPlayingSongIndex, ref gSongsArrayList, ref gPlayingSongIndex);
+                player.playSongSwitch(this, ++gPlayingSongIndex, ref gSongClassArrayList, ref gPlayingSongIndex);
         }
         /// <summary>
         /// 设置声音
@@ -137,14 +139,8 @@ namespace KTV_stand_online_vsrsion
         private void pbxAddSong_Click(object sender, EventArgs e)
         {
             FormAdd formAdd = new FormAdd();
-            if (formAdd.ShowDialog() == DialogResult.Cancel)
-            {
-                return;
-            }
-            else
-            {
-                addSongAtList();
-            }
+       
+            addSongAtList();
         }
         /// <summary>
         /// 播放列表和歌曲路径数组添加歌曲
@@ -152,15 +148,22 @@ namespace KTV_stand_online_vsrsion
         public void addSongAtList()
         {
             FormAdd formadd = new FormAdd();
-            //(ArrayList)formadd.gArrPlayList;
-            foreach(ListViewItem al in FormAdd.gArrPlayList)
+            formadd.bindList("select * from T_song");
+            if (formadd.ShowDialog() == DialogResult.OK)
             {
-                ListViewItem lvi = new ListViewItem();
-                lvi.Text = al.Text;
-                lvi.Tag = al.Tag;
-                lvi.SubItems.Add(al.SubItems[1].Text);  //1 保存id
-                this.lvwSongs.Items.Add(lvi);
-                gSongsArrayList.Add(lvi.Tag);
+                foreach (ListViewItem al in FormAdd.gArrPlayList)
+                {
+                    ListViewItem lvi = new ListViewItem();
+                    Song song = new Song();
+                    lvi.Text = al.Text;
+                    lvi.Tag = al.Tag;
+                    lvi.SubItems.Add(al.SubItems[1].Text);  //1 保存id
+                    this.lvwSongs.Items.Add(lvi);
+                    gSongsArrayList.Add(lvi.Tag);
+                    //设置歌曲对象
+                    song.setSongInfo(int.Parse(al.SubItems[1].Text), int.Parse(al.SubItems[2].Text), al.Tag.ToString(), al.Text);
+                    gSongClassArrayList.Add(song);
+                }
             }
             
         }

@@ -39,6 +39,10 @@ namespace KTV_stand_online_vsrsion
             DataSet dataset = operate.getDataset(sql);
             System.Data.DataRow row = dataset.Tables[0].Rows[0];
             int hot = int.Parse( row[0].ToString());
+            hot++;
+            string updatesql = string.Format("update T_song set hot={0} where id={1}",hot,id);
+          int i =  operate.operate(updatesql);
+          MessageBox.Show(i.ToString());
         }
         /// <summary>
         /// 改变play按键的图标
@@ -59,21 +63,24 @@ namespace KTV_stand_online_vsrsion
         /// <param name="index"></param>
         /// <param name="songsArrayList"></param>
         /// <param name="playingSongIndex"></param>
-        public void playSongSwitch(FormMain main, int index, ref  ArrayList songsArrayList,ref int playingSongIndex)
+        public void playSongSwitch(FormMain main, int index, ref  ArrayList gSongClassArrayList, ref int playingSongIndex)
         {
-            if (index >= songsArrayList.Count)
+            if (index >= gSongClassArrayList.Count)
             {
-                play(main,(string)songsArrayList[0]);
+                Song song = (Song)gSongClassArrayList[0];
+                play(main, song.getPath(),song.getId());
                 playingSongIndex = 0;
             }
             else if (index < 0)
             {
-                index = songsArrayList.Count - 1;
-                play(main,(string)songsArrayList[index]);
+                index = gSongClassArrayList.Count - 1;
+                Song song = (Song)gSongClassArrayList[index];
+                play(main, song.getPath(), song.getId());
             }
             else
             {
-                play(main,(string)songsArrayList[index]);
+                Song song = (Song)gSongClassArrayList[index];
+                play(main, song.getPath(), song.getId());
             }
         }
         /// <summary>

@@ -22,7 +22,6 @@ namespace KTV_stand_online_vsrsion
 
         private void FormAdd_Load(object sender, EventArgs e)
         {
-            bindList("select * from T_song");
             gArrPlayList.Clear();
         }
         /// <summary>
@@ -49,6 +48,7 @@ namespace KTV_stand_online_vsrsion
                     items.Tag = dgvGetData.Rows[i].Cells["path"].Value;
                     items.Text = dgvGetData.Rows[i].Cells["name"].Value.ToString(); 
                     items.SubItems.Add(dgvGetData.Rows[i].Cells["id"].Value.ToString());
+                    items.SubItems.Add(dgvGetData.Rows[i].Cells["hot"].Value.ToString()); // 2 保存hot
                     this.lvwSongsFromDB.Items.Add(items);
                 }
             }
@@ -65,6 +65,7 @@ namespace KTV_stand_online_vsrsion
             lviAdd.Tag = lvi.Tag;
             lviAdd.Text = lvi.Text;
             lviAdd.SubItems.Add(lvi.SubItems[1]);//1 保存id
+            lviAdd.SubItems.Add(lvi.SubItems[2]);//2 保存hot
             this.lvwPlayList.Items.Add(lviAdd);
         }
         /// <summary>
@@ -82,7 +83,11 @@ namespace KTV_stand_online_vsrsion
                 }
             }
         }
-
+        /// <summary>
+        /// 添加成功
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEnterAdd_Click(object sender, EventArgs e)
         {
             foreach(ListViewItem lvi in this.lvwPlayList.Items)
@@ -93,13 +98,21 @@ namespace KTV_stand_online_vsrsion
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-
+        /// <summary>
+        /// 重新选择
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             this.lvwPlayList.Items.Clear();
             gArrPlayList.Clear();
         }
-
+        /// <summary>
+        /// 返回
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReturn_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

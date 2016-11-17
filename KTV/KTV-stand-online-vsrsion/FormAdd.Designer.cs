@@ -152,8 +152,8 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvGetData;
-        private System.Windows.Forms.ListView lvwSongsFromDB;
+        public System.Windows.Forms.DataGridView dgvGetData;
+        public System.Windows.Forms.ListView lvwSongsFromDB;
         private System.Windows.Forms.ColumnHeader lvwColumnSong;
         private System.Windows.Forms.ListView lvwPlayList;
         private System.Windows.Forms.ColumnHeader chName;

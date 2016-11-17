@@ -97,5 +97,35 @@ namespace KTV_stand_online_vsrsion
             this.dbcon().Close();
             return myds;
         }
+        /// <summary>
+        /// 根据sql，绑定FormAdd 中数据源
+        /// </summary>
+        /// <param name="sql"></param>
+       /* public void bindList(string sql)
+        {
+            FormAdd formadd = new FormAdd();
+            
+            DBoperateClass operate = new DBoperateClass();
+            SqlDataAdapter adapter = new SqlDataAdapter(sql, operate.dbcon());
+            DataSet ds = new DataSet();
+            adapter.Fill(ds);
+            //判断数据源
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                //在此处会从dgv 获得空行
+                int rows = formadd.dgvGetData.Rows.Count;
+                rows--;
+                for (int i = 0; i < rows; i++)
+                {
+                    ListViewItem items = new ListViewItem();
+                    items.Tag = formadd.dgvGetData.Rows[i].Cells["path"].Value;
+                    items.Text = formadd.dgvGetData.Rows[i].Cells["name"].Value.ToString();
+                    items.SubItems.Add(formadd.dgvGetData.Rows[i].Cells["id"].Value.ToString());
+                    items.SubItems.Add(formadd.dgvGetData.Rows[i].Cells["hot"].Value.ToString()); // 2 保存hot
+                    formadd.lvwSongsFromDB.Items.Add(items);
+                }
+            }
+            formadd.ShowDialog();
+        }*/
     }
 }
