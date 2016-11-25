@@ -37,18 +37,18 @@ namespace KTV_stand_online_vsrsion
             //判断数据源
             if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
-
                 this.dgvGetData.DataSource = ds.Tables[0];
-                //在此处会从dgv 获得空行
                 int rows = dgvGetData.Rows.Count;
                 rows--;
                 for (int i = 0; i < rows; i++)
                 {
+                    
                     ListViewItem items = new ListViewItem();
                     items.Tag = dgvGetData.Rows[i].Cells["path"].Value;
                     items.Text = dgvGetData.Rows[i].Cells["name"].Value.ToString(); 
-                    items.SubItems.Add(dgvGetData.Rows[i].Cells["id"].Value.ToString());
-                    items.SubItems.Add(dgvGetData.Rows[i].Cells["hot"].Value.ToString()); // 2 保存hot
+                    items.SubItems.Add(dgvGetData.Rows[i].Cells["singer"].Value.ToString());//1保存歌手 
+                    items.SubItems.Add(dgvGetData.Rows[i].Cells["id"].Value.ToString()); //2保存 id
+                    items.SubItems.Add(dgvGetData.Rows[i].Cells["hot"].Value.ToString()); // 3 保存hot 
                     this.lvwSongsFromDB.Items.Add(items);
                 }
             }
@@ -64,8 +64,9 @@ namespace KTV_stand_online_vsrsion
             ListViewItem lviAdd = new ListViewItem();
             lviAdd.Tag = lvi.Tag;
             lviAdd.Text = lvi.Text;
-            lviAdd.SubItems.Add(lvi.SubItems[1]);//1 保存id
-            lviAdd.SubItems.Add(lvi.SubItems[2]);//2 保存hot
+            lviAdd.SubItems.Add(lvi.SubItems[1]);//1保存歌手
+            lviAdd.SubItems.Add(lvi.SubItems[2]);//2 保存id
+            lviAdd.SubItems.Add(lvi.SubItems[3]);//3 保存hot
             this.lvwPlayList.Items.Add(lviAdd);
         }
         /// <summary>

@@ -93,6 +93,7 @@
     <Compile Include="FormMsSong.Designer.cs">
       <DependentUpon>FormMsSong.cs</DependentUpon>
     </Compile>
+    <Compile Include="SongServices.cs" />
     <Compile Include="Pinyin.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

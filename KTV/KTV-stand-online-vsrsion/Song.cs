@@ -11,6 +11,7 @@ namespace KTV_stand_online_vsrsion
         int hot;
         string path;
         string name;
+        string singer;
         /// <summary>
         /// 设置歌曲信息
         /// </summary>
@@ -18,12 +19,13 @@ namespace KTV_stand_online_vsrsion
         /// <param name="hot">热度</param>
         /// <param name="path">路径</param>
         /// <param name="name">名称</param>
-        public void setSongInfo(int id,int hot,string path,string name)
+        public void setSongInfo(int id,int hot,string path,string name,string singer)
         {
             this.id = id;
             this.hot = hot;
             this.path = path;
             this.name = name;
+            this.singer = singer;
         }
         public string getPath()
         {

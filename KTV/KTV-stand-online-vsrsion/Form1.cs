@@ -20,47 +20,13 @@ namespace KTV_stand_online_vsrsion
         Player player = new Player();
         //播放列表数组
         ArrayList gSongClassArrayList = new ArrayList();
+        //当前播放歌曲的键值
         int gPlayingSongIndex = 0;
+        //当前播放状态
         static public int gLogInfo = 0;
         public FormMain()
         {
             InitializeComponent();
-        }
-        
-        private void pboxPlay_Click(object sender, EventArgs e)
-        {
-            if (this.mediaPlayer.currentPlaylist.count != 0)
-            {
-                if (this.mediaPlayer.playState == WMPLib.WMPPlayState.wmppsPlaying)
-                {
-                    this.pboxPlay.Image = global::KTV_stand_online_vsrsion.Properties.Resources.play_down;
-                    this.mediaPlayer.Ctlcontrols.pause();
-                }
-                else
-                {
-                    this.pboxPlay.Image = global::KTV_stand_online_vsrsion.Properties.Resources.pause_down;
-                    this.mediaPlayer.Ctlcontrols.play();
-                }
-            }
-
-        }
-        /// <summary>
-        /// 上一首 改成面向对象
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void pboxPrevious_Click(object sender, EventArgs e)
-        {
-            player.playSongSwitch(this, --gPlayingSongIndex, ref gSongClassArrayList, ref gPlayingSongIndex);
-        }
-        /// <summary>
-        /// 下一首 改成面向对象
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void pboxNext_Click(object sender, EventArgs e)
-        {
-            player.playSongSwitch(this, ++gPlayingSongIndex, ref gSongClassArrayList, ref gPlayingSongIndex);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -87,36 +53,11 @@ namespace KTV_stand_online_vsrsion
             else
             {
                 string[] files = openfile.FileNames;
-              //  player.addSongsPath(this, ref files, ref songsArrayList);
+              
                 player.addSongsIntoDB(ref files);
             }
         }
-        /// <summary>
-        /// 调节声音的UI效果
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void panelParent_MouseClick(object sender, MouseEventArgs e)
-        {
-            this.pnlChild.Size = new Size(e.X, 10);
-            int valume = this.pnlChild.Size.Width;
-            setValume(valume);
-        }
-        /// <summary>
-        /// 点击列表播放
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void listViewSongs_Click(object sender, EventArgs e)
-        {
-            if (lvwSongs.SelectedItems.Count >= 1)
-            {
-                gPlayingSongIndex = this.lvwSongs.SelectedItems[0].Index;
-              
-                Song song = (Song)gSongClassArrayList[gPlayingSongIndex];
-                player.play(this,song.getPath(),song.getId());
-            }
-        }
+ 
         /// <summary>
         /// 自动播放 改成面向对象
         /// </summary>
@@ -127,6 +68,7 @@ namespace KTV_stand_online_vsrsion
             if (this.mediaPlayer.playState == WMPLib.WMPPlayState.wmppsStopped)
                 player.playSongSwitch(this, ++gPlayingSongIndex, ref gSongClassArrayList, ref gPlayingSongIndex);
         }
+
         /// <summary>
         /// 设置声音
         /// </summary>
@@ -135,17 +77,7 @@ namespace KTV_stand_online_vsrsion
         {
             this.mediaPlayer.settings.volume = valume;
         }
-        /// <summary>
-        /// 添加歌曲
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void pbxAddSong_Click(object sender, EventArgs e)
-        {
-            FormAdd formAdd = new FormAdd();
-       
-            addSongAtList();
-        }
+
         /// <summary>
         /// 播放列表添加歌曲
         /// </summary>
@@ -161,21 +93,81 @@ namespace KTV_stand_online_vsrsion
                     Song song = new Song();
                     lvi.Text = al.Text;
                     lvi.Tag = al.Tag;
-                    lvi.SubItems.Add(al.SubItems[1].Text);  //1 保存id
+                    lvi.SubItems.Add(al.SubItems[1].Text);  //1保存歌曲
+                   
                     this.lvwSongs.Items.Add(lvi);
                     //设置歌曲对象
-                    song.setSongInfo(int.Parse(al.SubItems[1].Text), int.Parse(al.SubItems[2].Text), al.Tag.ToString(), al.Text);
+                    song.setSongInfo(int.Parse(al.SubItems[2].Text), int.Parse(al.SubItems[3].Text), al.Tag.ToString(), al.Text,al.SubItems[1].Text);
                     gSongClassArrayList.Add(song);
                 }
             }
             
         }
+  
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         /// <summary>
-        /// 用户删除播放列表
+        /// 添加歌曲
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void pbxDelete_Click(object sender, EventArgs e)
+        private void pbxAddSong_Click_1(object sender, EventArgs e)
+        {
+            addSongAtList();
+        }
+
+        /// <summary>
+        /// 下一首
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pboxNext_Click_1(object sender, EventArgs e)
+        {
+            player.playSongSwitch(this, ++gPlayingSongIndex, ref gSongClassArrayList, ref gPlayingSongIndex);
+        }
+
+        /// <summary>
+        /// 播放与暂停
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pboxPlay_Click_1(object sender, EventArgs e)
+        {
+            if (this.mediaPlayer.currentPlaylist.count != 0)
+            {
+                if (this.mediaPlayer.playState == WMPLib.WMPPlayState.wmppsPlaying)
+                {
+                    this.pboxPlay.Image = global::KTV_stand_online_vsrsion.Properties.Resources.play_down;
+                    this.mediaPlayer.Ctlcontrols.pause();
+                }
+                else
+                {
+                    this.pboxPlay.Image = global::KTV_stand_online_vsrsion.Properties.Resources.pause_down;
+                    this.mediaPlayer.Ctlcontrols.play();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 上一首
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pboxPrevious_Click_1(object sender, EventArgs e)
+        {
+            player.playSongSwitch(this, --gPlayingSongIndex, ref gSongClassArrayList, ref gPlayingSongIndex);
+        }
+
+        /// <summary>
+        /// 用户删除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pbxDelete_Click_1(object sender, EventArgs e)
         {
             for (int i = this.lvwSongs.Items.Count - 1; i >= 0; i--)
             {
@@ -187,11 +179,76 @@ namespace KTV_stand_online_vsrsion
             }
         }
 
-        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        private void pnlParent_MouseClick(object sender, MouseEventArgs e)
         {
-            Application.Exit();
+            this.pnlChild.Size = new Size(e.X, 10);
+            int valume = this.pnlChild.Size.Width;
+            setValume(valume);
         }
 
+        private void pnlChild_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.pnlChild.Size = new Size(e.X, 10);
+            int valume = this.pnlChild.Size.Width;
+            setValume(valume);
+        }
+
+        private void pboxPlay_MouseEnter(object sender, EventArgs e)
+        {
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
+        }
+
+        private void pboxPlay_MouseLeave(object sender, EventArgs e)
+        {
+            this.Cursor = System.Windows.Forms.Cursors.Arrow;
+        }
+
+        private void lvwSongs_Click(object sender, EventArgs e)
+        {
+            if (lvwSongs.SelectedItems.Count >= 1)
+            {
+                gPlayingSongIndex = this.lvwSongs.SelectedItems[0].Index;
+
+                Song song = (Song)gSongClassArrayList[gPlayingSongIndex];
+                player.play(this, song.getPath(), song.getId());
+            }
+        }
+
+        private void btnQuerySinger_Click(object sender, EventArgs e)
+        {
+          /*  if (tbxSingerName.Text == string.Empty)
+            {
+                return;
+            }*/
+            string sql = string.Format("select * from T_song where singer like '%{0}%'", tbxSingerName.Text);
+            addSongAccessSQL(sql);
+            
+        }
+        /// <summary>
+        /// 通过sql查找歌曲
+        /// </summary>
+        /// <param name="sql"></param>
+        public void addSongAccessSQL(string sql)
+        {
+            FormAdd formadd = new FormAdd();
+            formadd.bindList(sql);
+            if (formadd.ShowDialog() == DialogResult.OK)
+            {
+                foreach (ListViewItem al in FormAdd.gArrPlayList)
+                {
+                    ListViewItem lvi = new ListViewItem();
+                    Song song = new Song();
+                    lvi.Text = al.Text;
+                    lvi.Tag = al.Tag;
+                    lvi.SubItems.Add(al.SubItems[1].Text);  //1保存歌曲
+
+                    this.lvwSongs.Items.Add(lvi);
+                    //设置歌曲对象
+                    song.setSongInfo(int.Parse(al.SubItems[2].Text), int.Parse(al.SubItems[3].Text), al.Tag.ToString(), al.Text, al.SubItems[1].Text);
+                    gSongClassArrayList.Add(song);
+                }
+            }
+        }
        
     }
 }

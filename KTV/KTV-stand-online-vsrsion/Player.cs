@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -109,31 +105,7 @@ namespace KTV_stand_online_vsrsion
             }
             main.Controls.Remove(getInfo);
         }
-        /// <summary>
-        /// 向数据库添加歌曲
-        /// </summary>
-        /// <param name="main"></param>
-        /// <param name="songs"></param>
-        public void addSongsIntoDB(FormMain main,ref string[] songs)
-        {
-            DBoperateClass operate = new DBoperateClass();
-            Pinyin py = new Pinyin();
-            int rows = 0;
-            foreach(string value in songs)
-            {
-                string pattern = @".+(?=\.mp3)";  //匹配歌曲名称的正则
-                Regex reg = new Regex(pattern);
-                Match match = reg.Match(Path.GetFileName(value));
-                string filename = match.Value;      //获得文件名
-                string pyStr = py.GetChineseSpell(filename);    //获得拼音
-                string insertSQL = operate.getInsertSQL(filename, value, pyStr); //获得插入SQL
-                rows += operate.Insert(insertSQL); //插入数量 +1
-            }
-            if (rows > 0)
-            {
-                MessageBox.Show(string.Format("添加{0}首歌曲",rows));
-            }
-        }
+        
         /// <summary>
         /// 重载向数据库添加歌曲
         /// </summary>
@@ -143,15 +115,18 @@ namespace KTV_stand_online_vsrsion
         {
             DBoperateClass operate = new DBoperateClass();
             Pinyin py = new Pinyin();
+            SongServices songservice = new SongServices();
             int rows = 0;
-            foreach (string value in songs)
+            foreach (string filepath in songs)
             {
                 string pattern = @".+(?=\.mp3)";  //匹配歌曲名称的正则
                 Regex reg = new Regex(pattern);
-                Match match = reg.Match(Path.GetFileName(value));
+                Match match = reg.Match(Path.GetFileName(filepath));
                 string filename = match.Value;      //获得文件名
-                string pyStr = py.GetChineseSpell(filename);    //获得拼音
-                string insertSQL = operate.getInsertSQL(filename, value, pyStr); //获得插入SQL
+                string pyStr = py.GetChineseSpell(filepath);    //获得拼音
+                string singer = songservice.getSingerName(filepath);
+                string insertSQL = operate.getInsertSQL(filename, filepath, pyStr,singer); //获得插入SQL
+               // string singer =
                 rows += operate.Insert(insertSQL); //插入数量 +1
             }
             if (rows > 0)

@@ -17,9 +17,9 @@ namespace KTV_stand_online_vsrsion
         /// <param name="songName"></param>
         /// <param name="py"></param>
         /// <returns></returns>
-        public string getInsertSQL(string name,string songPath, string py)
+        public string getInsertSQL(string name,string songPath, string py,string singer)
         {
-            string insert = string.Format("INSERT INTO T_song(name,path,py) VALUES('{0}','{1}','{2}')",name, songPath, py);
+            string insert = string.Format("INSERT INTO T_song(name,path,py,singer) VALUES('{0}','{1}','{2}' ,'{3}')",name, songPath, py,singer);
             return insert;
         }
         /// <summary>
@@ -131,6 +131,6 @@ namespace KTV_stand_online_vsrsion
             SqlCommand com = new SqlCommand(sql,con);
             return com.ExecuteReader();
         }
-      
+        
     }
 }
