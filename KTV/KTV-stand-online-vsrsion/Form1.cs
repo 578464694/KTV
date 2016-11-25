@@ -18,9 +18,7 @@ namespace KTV_stand_online_vsrsion
         /// songsArrayList 存储歌曲路径
         /// </summary>
         Player player = new Player();
-        //保存歌曲路径的数组
-        ArrayList gSongsArrayList = new ArrayList();
-        //保存歌曲对象的数组
+        //播放列表数组
         ArrayList gSongClassArrayList = new ArrayList();
         int gPlayingSongIndex = 0;
         static public int gLogInfo = 0;
@@ -69,7 +67,7 @@ namespace KTV_stand_online_vsrsion
         {
             if (FormMain.gLogInfo == 0)
             {
-                this.pbxAddSongsIntoDB.Visible = false;
+               // this.pbxAddSongsIntoDB.Visible = false;
             }
         }
         /// <summary>
@@ -90,7 +88,7 @@ namespace KTV_stand_online_vsrsion
             {
                 string[] files = openfile.FileNames;
               //  player.addSongsPath(this, ref files, ref songsArrayList);
-                player.addSongsIntoDB(this, ref files);
+                player.addSongsIntoDB(ref files);
             }
         }
         /// <summary>
@@ -114,7 +112,7 @@ namespace KTV_stand_online_vsrsion
             if (lvwSongs.SelectedItems.Count >= 1)
             {
                 gPlayingSongIndex = this.lvwSongs.SelectedItems[0].Index;
-               // string path = (string)(gSongsArrayList[gPlayingSongIndex]);
+              
                 Song song = (Song)gSongClassArrayList[gPlayingSongIndex];
                 player.play(this,song.getPath(),song.getId());
             }
@@ -149,7 +147,7 @@ namespace KTV_stand_online_vsrsion
             addSongAtList();
         }
         /// <summary>
-        /// 播放列表和歌曲路径数组添加歌曲
+        /// 播放列表添加歌曲
         /// </summary>
         public void addSongAtList()
         {

@@ -19,12 +19,10 @@ namespace KTV_stand_online_vsrsion
 
         private void FormMsSong_Load(object sender, EventArgs e)
         {
-            string sql = "select id AS 编号,name AS 歌曲名,singer AS 歌手,hot AS 热度 from T_song";
-            DBoperateClass operate = new DBoperateClass();
-            this.dataGV.DataSource = operate.getDataset(sql).Tables[0];
+            selectAllSong();
            
         }
-
+        
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DBoperateClass operate = new DBoperateClass();
@@ -50,6 +48,34 @@ namespace KTV_stand_online_vsrsion
         private void dataGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             this.dataGV.Rows[e.RowIndex].Selected = true;
+        }
+        /// <summary>
+        /// 管理员添加歌曲
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddSong_Click(object sender, EventArgs e)
+        {
+            Player player = new Player();
+            OpenFileDialog openfile = new OpenFileDialog();
+            openfile.Multiselect = true;
+            openfile.Filter = "mp3|*.mp3";
+            if (openfile.ShowDialog() == DialogResult.Cancel)
+            {
+                return;
+            }
+            else
+            {
+                string[] files = openfile.FileNames;
+                player.addSongsIntoDB(ref files);
+                selectAllSong();
+            }
+        }
+        public void selectAllSong()
+        {
+            string sql = "select id AS 编号,name AS 歌曲名,singer AS 歌手,hot AS 热度 from T_song";
+            DBoperateClass operate = new DBoperateClass();
+            this.dataGV.DataSource = operate.getDataset(sql).Tables[0];
         }
     }
 }

@@ -72,6 +72,7 @@
             this.btnAddSong.TabIndex = 3;
             this.btnAddSong.Text = "添加";
             this.btnAddSong.UseVisualStyleBackColor = true;
+            this.btnAddSong.Click += new System.EventHandler(this.btnAddSong_Click);
             // 
             // FormMsSong
             // 
