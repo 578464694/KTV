@@ -231,7 +231,11 @@ namespace KTV_stand_online_vsrsion
         public void addSongAccessSQL(string sql)
         {
             FormAdd formadd = new FormAdd();
-            formadd.bindList(sql);
+            if (!formadd.bindList(sql))
+            {
+                labTip.Text = "未搜索到相关歌手";
+                return;
+            }
             if (formadd.ShowDialog() == DialogResult.OK)
             {
                 foreach (ListViewItem al in FormAdd.gArrPlayList)
@@ -247,7 +251,9 @@ namespace KTV_stand_online_vsrsion
                     song.setSongInfo(int.Parse(al.SubItems[2].Text), int.Parse(al.SubItems[3].Text), al.Tag.ToString(), al.Text, al.SubItems[1].Text);
                     gSongClassArrayList.Add(song);
                 }
+                
             }
+            labTip.Text = string.Empty;
         }
        
     }

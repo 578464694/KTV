@@ -28,7 +28,7 @@ namespace KTV_stand_online_vsrsion
         /// 绑定播放列表数据源
         /// </summary>
         /// <param name="sql">查询的SQL语句</param>
-        public void bindList(string sql)
+        public bool bindList(string sql)
         {
             DBoperateClass operate = new DBoperateClass();
             SqlDataAdapter adapter = new SqlDataAdapter(sql,operate.dbcon());
@@ -42,16 +42,23 @@ namespace KTV_stand_online_vsrsion
                 rows--;
                 for (int i = 0; i < rows; i++)
                 {
-                    
+
                     ListViewItem items = new ListViewItem();
                     items.Tag = dgvGetData.Rows[i].Cells["path"].Value;
-                    items.Text = dgvGetData.Rows[i].Cells["name"].Value.ToString(); 
+                    items.Text = dgvGetData.Rows[i].Cells["name"].Value.ToString();
                     items.SubItems.Add(dgvGetData.Rows[i].Cells["singer"].Value.ToString());//1保存歌手 
                     items.SubItems.Add(dgvGetData.Rows[i].Cells["id"].Value.ToString()); //2保存 id
                     items.SubItems.Add(dgvGetData.Rows[i].Cells["hot"].Value.ToString()); // 3 保存hot 
                     this.lvwSongsFromDB.Items.Add(items);
+
                 }
+                return true;
             }
+            else
+            {
+                return false;//结果为空
+            }
+            
         }
         /// <summary>
         /// 单击歌曲列表，向播放列表添加歌曲

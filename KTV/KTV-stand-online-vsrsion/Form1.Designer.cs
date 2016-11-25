@@ -45,11 +45,12 @@
             this.lvColumnSongname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvColumnSinger = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tpSinger = new System.Windows.Forms.TabPage();
-            this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
-            this.tbxSingerName = new System.Windows.Forms.TextBox();
             this.btnQuerySinger = new System.Windows.Forms.Button();
+            this.tbxSingerName = new System.Windows.Forms.TextBox();
             this.tpPinyin = new System.Windows.Forms.TabPage();
             this.tpHot = new System.Windows.Forms.TabPage();
+            this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.labTip = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAddSong)).BeginInit();
             this.pnlParent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPrevious)).BeginInit();
@@ -212,6 +213,7 @@
             // 
             // tpSinger
             // 
+            this.tpSinger.Controls.Add(this.labTip);
             this.tpSinger.Controls.Add(this.btnQuerySinger);
             this.tpSinger.Controls.Add(this.tbxSingerName);
             this.tpSinger.Location = new System.Drawing.Point(4, 22);
@@ -222,23 +224,6 @@
             this.tpSinger.Text = "歌手";
             this.tpSinger.UseVisualStyleBackColor = true;
             // 
-            // mediaPlayer
-            // 
-            this.mediaPlayer.Enabled = true;
-            this.mediaPlayer.Location = new System.Drawing.Point(4, 395);
-            this.mediaPlayer.Name = "mediaPlayer";
-            this.mediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaPlayer.OcxState")));
-            this.mediaPlayer.Size = new System.Drawing.Size(10, 10);
-            this.mediaPlayer.TabIndex = 20;
-            this.mediaPlayer.Visible = false;
-            // 
-            // tbxSingerName
-            // 
-            this.tbxSingerName.Location = new System.Drawing.Point(65, 38);
-            this.tbxSingerName.Name = "tbxSingerName";
-            this.tbxSingerName.Size = new System.Drawing.Size(176, 21);
-            this.tbxSingerName.TabIndex = 0;
-            // 
             // btnQuerySinger
             // 
             this.btnQuerySinger.Location = new System.Drawing.Point(281, 36);
@@ -248,6 +233,13 @@
             this.btnQuerySinger.Text = "查找歌手";
             this.btnQuerySinger.UseVisualStyleBackColor = true;
             this.btnQuerySinger.Click += new System.EventHandler(this.btnQuerySinger_Click);
+            // 
+            // tbxSingerName
+            // 
+            this.tbxSingerName.Location = new System.Drawing.Point(65, 38);
+            this.tbxSingerName.Name = "tbxSingerName";
+            this.tbxSingerName.Size = new System.Drawing.Size(176, 21);
+            this.tbxSingerName.TabIndex = 0;
             // 
             // tpPinyin
             // 
@@ -268,6 +260,24 @@
             this.tpHot.TabIndex = 3;
             this.tpHot.Text = "热度";
             this.tpHot.UseVisualStyleBackColor = true;
+            // 
+            // mediaPlayer
+            // 
+            this.mediaPlayer.Enabled = true;
+            this.mediaPlayer.Location = new System.Drawing.Point(4, 395);
+            this.mediaPlayer.Name = "mediaPlayer";
+            this.mediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaPlayer.OcxState")));
+            this.mediaPlayer.Size = new System.Drawing.Size(10, 10);
+            this.mediaPlayer.TabIndex = 20;
+            this.mediaPlayer.Visible = false;
+            // 
+            // labTip
+            // 
+            this.labTip.AutoSize = true;
+            this.labTip.Location = new System.Drawing.Point(63, 87);
+            this.labTip.Name = "labTip";
+            this.labTip.Size = new System.Drawing.Size(0, 12);
+            this.labTip.TabIndex = 2;
             // 
             // FormMain
             // 
@@ -317,6 +327,7 @@
         private System.Windows.Forms.TextBox tbxSingerName;
         private System.Windows.Forms.TabPage tpPinyin;
         private System.Windows.Forms.TabPage tpHot;
+        private System.Windows.Forms.Label labTip;
     }
 }
 
