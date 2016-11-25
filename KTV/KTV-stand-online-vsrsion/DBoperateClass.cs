@@ -97,6 +97,40 @@ namespace KTV_stand_online_vsrsion
             this.dbcon().Close();
             return myds;
         }
-       
+        /// <summary>
+        /// 登录验证
+        /// </summary>
+        /// <param name="name">用户名</param>
+        /// <param name="pwd">密码</param>
+        /// <returns></returns>
+        public bool LogCheck(string name,string pwd)
+        {
+            SqlConnection con = this.dbcon();
+            string sql = "select * from T_user where name=@name and pw=@pw";
+            SqlCommand com = new SqlCommand(sql, con);
+            com.Parameters.AddWithValue("name",name);
+            com.Parameters.AddWithValue("pw", pwd);
+            SqlDataReader reader = com.ExecuteReader();
+            if (reader.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// 选择歌曲表中歌曲内容
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public SqlDataReader sqlSelect(string sql)
+        {
+            SqlConnection con = this.dbcon();
+            SqlCommand com = new SqlCommand(sql,con);
+            return com.ExecuteReader();
+        }
+      
     }
 }

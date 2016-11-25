@@ -18,9 +18,12 @@ namespace KTV_stand_online_vsrsion
         /// songsArrayList 存储歌曲路径
         /// </summary>
         Player player = new Player();
+        //保存歌曲路径的数组
         ArrayList gSongsArrayList = new ArrayList();
+        //保存歌曲对象的数组
         ArrayList gSongClassArrayList = new ArrayList();
         int gPlayingSongIndex = 0;
+        static public int gLogInfo = 0;
         public FormMain()
         {
             InitializeComponent();
@@ -64,7 +67,10 @@ namespace KTV_stand_online_vsrsion
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-
+            if (FormMain.gLogInfo == 0)
+            {
+                this.pbxAddSongsIntoDB.Visible = false;
+            }
         }
         /// <summary>
         /// 管理员添加歌曲
@@ -159,7 +165,6 @@ namespace KTV_stand_online_vsrsion
                     lvi.Tag = al.Tag;
                     lvi.SubItems.Add(al.SubItems[1].Text);  //1 保存id
                     this.lvwSongs.Items.Add(lvi);
-                    gSongsArrayList.Add(lvi.Tag);
                     //设置歌曲对象
                     song.setSongInfo(int.Parse(al.SubItems[1].Text), int.Parse(al.SubItems[2].Text), al.Tag.ToString(), al.Text);
                     gSongClassArrayList.Add(song);
@@ -167,5 +172,28 @@ namespace KTV_stand_online_vsrsion
             }
             
         }
+        /// <summary>
+        /// 用户删除播放列表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pbxDelete_Click(object sender, EventArgs e)
+        {
+            for (int i = this.lvwSongs.Items.Count - 1; i >= 0; i--)
+            {
+                if (this.lvwSongs.Items[i].Selected)
+                {
+                    this.lvwSongs.Items.RemoveAt(i);
+                    this.gSongClassArrayList.RemoveAt(i);
+                }
+            }
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+       
     }
 }

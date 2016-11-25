@@ -42,7 +42,6 @@ namespace KTV_stand_online_vsrsion
             hot++;
             string updatesql = string.Format("update T_song set hot={0} where id={1}",hot,id);
           int i =  operate.operate(updatesql);
-          MessageBox.Show(i.ToString());
         }
         /// <summary>
         /// 改变play按键的图标

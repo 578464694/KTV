@@ -142,7 +142,7 @@
             this.Controls.Add(this.lvwSongsFromDB);
             this.Controls.Add(this.dgvGetData);
             this.Name = "FormAdd";
-            this.Text = "FormAdd";
+            this.Text = "添加歌曲";
             this.Load += new System.EventHandler(this.FormAdd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGetData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

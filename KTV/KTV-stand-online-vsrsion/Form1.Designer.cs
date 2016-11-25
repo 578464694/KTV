@@ -37,17 +37,19 @@
             this.lvColumnSongname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timerAutoPlay = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pbxAddSong = new System.Windows.Forms.PictureBox();
             this.pbxAddSongsIntoDB = new System.Windows.Forms.PictureBox();
             this.pboxPrevious = new System.Windows.Forms.PictureBox();
             this.pboxNext = new System.Windows.Forms.PictureBox();
             this.pboxPlay = new System.Windows.Forms.PictureBox();
-            this.pbxAddSong = new System.Windows.Forms.PictureBox();
+            this.pbxDelete = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAddSong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAddSongsIntoDB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPrevious)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPlay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxAddSong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxDelete)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlParent
@@ -103,6 +105,17 @@
             this.timerAutoPlay.Enabled = true;
             this.timerAutoPlay.Tick += new System.EventHandler(this.timerAutoPlay_Tick);
             // 
+            // pbxAddSong
+            // 
+            this.pbxAddSong.Image = global::KTV_stand_online_vsrsion.Properties.Resources.list_down;
+            this.pbxAddSong.Location = new System.Drawing.Point(301, 35);
+            this.pbxAddSong.Name = "pbxAddSong";
+            this.pbxAddSong.Size = new System.Drawing.Size(27, 28);
+            this.pbxAddSong.TabIndex = 11;
+            this.pbxAddSong.TabStop = false;
+            this.toolTip1.SetToolTip(this.pbxAddSong, "用户添加歌曲");
+            this.pbxAddSong.Click += new System.EventHandler(this.pbxAddSong_Click);
+            // 
             // pbxAddSongsIntoDB
             // 
             this.pbxAddSongsIntoDB.Image = global::KTV_stand_online_vsrsion.Properties.Resources.list_down;
@@ -147,22 +160,23 @@
             this.toolTip1.SetToolTip(this.pboxPlay, "播放/暂停");
             this.pboxPlay.Click += new System.EventHandler(this.pboxPlay_Click);
             // 
-            // pbxAddSong
+            // pbxDelete
             // 
-            this.pbxAddSong.Image = global::KTV_stand_online_vsrsion.Properties.Resources.list_down;
-            this.pbxAddSong.Location = new System.Drawing.Point(301, 35);
-            this.pbxAddSong.Name = "pbxAddSong";
-            this.pbxAddSong.Size = new System.Drawing.Size(27, 28);
-            this.pbxAddSong.TabIndex = 11;
-            this.pbxAddSong.TabStop = false;
-            this.toolTip1.SetToolTip(this.pbxAddSong, "用户添加歌曲");
-            this.pbxAddSong.Click += new System.EventHandler(this.pbxAddSong_Click);
+            this.pbxDelete.Image = global::KTV_stand_online_vsrsion.Properties.Resources.delete;
+            this.pbxDelete.Location = new System.Drawing.Point(474, 192);
+            this.pbxDelete.Name = "pbxDelete";
+            this.pbxDelete.Size = new System.Drawing.Size(41, 33);
+            this.pbxDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxDelete.TabIndex = 12;
+            this.pbxDelete.TabStop = false;
+            this.pbxDelete.Click += new System.EventHandler(this.pbxDelete_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 403);
+            this.Controls.Add(this.pbxDelete);
             this.Controls.Add(this.pbxAddSong);
             this.Controls.Add(this.lvwSongs);
             this.Controls.Add(this.mediaPlayer);
@@ -173,14 +187,16 @@
             this.Controls.Add(this.pboxNext);
             this.Controls.Add(this.pboxPlay);
             this.Name = "FormMain";
-            this.Text = "FormMain";
+            this.Text = "播放列表";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxAddSong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxAddSongsIntoDB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPrevious)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPlay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxAddSong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxDelete)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -199,6 +215,7 @@
         private System.Windows.Forms.Timer timerAutoPlay;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.PictureBox pbxAddSong;
+        private System.Windows.Forms.PictureBox pbxDelete;
     }
 }
 
